@@ -621,8 +621,37 @@ a {
 
         </div>
     </div>
+</section> 
+    
+<section id="share" style="text-align:center; padding:30px 15px;">
+    <h2>📢 شارك موقع الانتخابات البلدية – قجال</h2>
+    <p>ساهم في نشر الموقع ومشاركته مع أصدقائك.</p>
+
+    <button onclick="shareWebsite()" 
+    style="background:#087443; color:white; border:none; padding:14px 22px; border-radius:10px; font-size:17px; cursor:pointer;">
+        🔗 شارك الموقع
+    </button>
 </section>
 
+<script>
+function shareWebsite() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'الانتخابات البلدية – قجال',
+            text: 'تفضل بزيارة موقع الانتخابات البلدية – قجال',
+            url: window.location.href
+        }).catch(function(error) {});
+    } else {
+        navigator.clipboard.writeText(window.location.href)
+            .then(function() {
+                alert('تم نسخ رابط الموقع، يمكنك لصقه ومشاركته.');
+            })
+            .catch(function() {
+                prompt('انسخ رابط الموقع:', window.location.href);
+            });
+    }
+}
+</script>
 </main>
 <footer>
     <p>الانتخابات البلدية – قجال</p>
