@@ -1,85 +1,419 @@
-<!DOCTYPE html>
+her<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الانتخابات المحلية - قجال</title>
+<title>الانتخابات البلدية - قجال</title>
+<meta name="description" content="الموقع التعريفي بالمترشح عنقاق النوري وحركة البناء الوطني في قجال.">
+
 <style>
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f1f5f9;
-  color: #222;
-  text-align: center;
+    margin: 0;
+    font-family: Arial, Tahoma, sans-serif;
+    background: #f5f7f5;
+    color: #26352c;
+    line-height: 1.9;
 }
+
 header {
-  background: #087443;
-  color: white;
-  padding: 25px 10px;
+    background: linear-gradient(120deg, #087443, #064d2d);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    border-bottom: 5px solid #d92332;
 }
-header h1 { margin: 0; }
+
+.flag {
+    display: inline-flex;
+    width: 62px;
+    height: 38px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.flag-green {
+    width: 50%;
+    background: #087443;
+}
+
+.flag-white {
+    width: 50%;
+    background: white;
+}
+
+header h1 {
+    margin: 5px 0;
+    font-size: 27px;
+}
+
+header p {
+    margin: 3px 0;
+}
+
 nav {
-  background: #075c36;
-  padding: 14px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 12px 5px;
+    box-shadow: 0 2px 8px #00000010;
 }
+
 nav a {
-  color: white;
-  text-decoration: none;
-  margin: 10px;
+    color: #086b3e;
+    text-decoration: none;
+    padding: 7px 12px;
+    font-weight: bold;
+    border-radius: 6px;
 }
-main {
-  padding: 20px;
+
+nav a:hover {
+    background: #e5f3e9;
 }
+
+.hero {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #e6f5e9, #ffffff);
+    border-bottom: 1px solid #dce8df;
+}
+
+.hero h2 {
+    color: #087443;
+    font-size: 29px;
+    margin-top: 0;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 10px auto 20px;
+}
+
+.button {
+    display: inline-block;
+    background: #087443;
+    color: white;
+    text-decoration: none;
+    padding: 10px 22px;
+    margin: 5px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #064d2d;
+}
+
+section {
+    padding: 35px 16px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section-title {
+    color: #087443;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 0;
+}
+
 .card {
-  background: white;
-  margin: 20px auto;
-  padding: 22px;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #ccc;
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    margin: 15px 0;
+    box-shadow: 0 3px 12px #0000000c;
+    border-top: 3px solid #087443;
 }
-h2 { color: #087443; }
+
+.candidate {
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+.photo-placeholder {
+    width: 180px;
+    height: 210px;
+    margin: 10px auto 20px;
+    background: #edf2ee;
+    border: 2px dashed #8aaa94;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #55705d;
+    padding: 15px;
+}
+
+.info {
+    text-align: right;
+    padding: 0;
+    list-style: none;
+}
+
+.info li {
+    padding: 8px 0;
+    border-bottom: 1px solid #edf0ed;
+}
+
+.info strong {
+    color: #087443;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.grid .card {
+    margin: 0;
+}
+
+.media-placeholder {
+    min-height: 125px;
+    background: #f0f4f0;
+    border: 2px dashed #a7b8aa;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #617366;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
 footer {
-  background: #075c36;
-  color: white;
-  padding: 20px;
-  margin-top: 30px;
+    background: #064d2d;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 5px solid #d92332;
+}
+
+footer p {
+    margin: 5px;
+}
+
+.small-note {
+    color: #647368;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    nav a {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+
+    section {
+        padding: 28px 12px;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <h1>الانتخابات المحلية - قجال</h1>
-  <p>فضاء للتعريف بالانتخابات المحلية</p>
+    <div class="flag" aria-label="ألوان العلم الجزائري">
+        <div class="flag-green"></div>
+        <div class="flag-white"></div>
+    </div>
+
+    <h1>الانتخابات البلدية – قجال</h1>
+    <p>حركة البناء الوطني</p>
+    <p>معًا من أجل خدمة قجال والتنمية المحلية</p>
 </header>
 
 <nav>
-  <a href="#home">الرئيسية</a>
-  <a href="#about">عن الانتخابات</a>
-  <a href="#contact">اتصل بنا</a>
+    <a href="#home">الرئيسية</a>
+    <a href="#candidate">المترشح</a>
+    <a href="#program">البرنامج</a>
+    <a href="#news">الأخبار</a>
+    <a href="#gallery">الصور والفيديوهات</a>
+    <a href="#contact">اتصل بنا</a>
 </nav>
 
-<main id="home">
-  <section class="card">
-    <h2>مرحبًا بكم</h2>
-    <p>مرحبًا بكم في الموقع التعريفي بالانتخابات المحلية في قجال.</p>
-    <p>تابعوا هنا المعلومات والإعلانات المتعلقة بالانتخابات.</p>
-  </section>
+<main>
 
-  <section class="card" id="about">
-    <h2>عن الانتخابات المحلية</h2>
-    <p>مساحة لنشر المعلومات والبرامج الانتخابية والتعريف بالمترشحين.</p>
-  </section>
+<div class="hero" id="home">
+    <h2>مرحبًا بكم في موقع الانتخابات البلدية – قجال</h2>
+    <p>
+        فضاء تعريفي بالمترشح عنقاق النوري،
+        وبالمقترحات المتعلقة بالتنمية المحلية وخدمة المواطنين.
+    </p>
+    <a class="button" href="#candidate">تعرف على المترشح</a>
+    <a class="button" href="#program">اكتشف البرنامج</a>
+</div>
 
-  <section class="card" id="contact">
-    <h2>اتصل بنا</h2>
-    <p>يمكن إضافة معلومات التواصل هنا لاحقًا.</p>
-  </section>
+<section id="candidate">
+    <h2 class="section-title">التعريف بالمترشح</h2>
+
+    <div class="card candidate">
+
+        <div class="photo-placeholder">
+            مكان الصورة الشخصية للمترشح
+        </div>
+
+        <h2 style="color:#087443;">عنقاق النوري</h2>
+        <p><strong>الحزب:</strong> حركة البناء الوطني</p>
+        <p><strong>المنطقة:</strong> قجال</p>
+
+        <ul class="info">
+            <li><strong>الاسم واللقب:</strong> عنقاق النوري</li>
+            <li><strong>تاريخ الميلاد:</strong> يضاف لاحقًا</li>
+            <li><strong>مكان الميلاد:</strong> يضاف لاحقًا</li>
+            <li><strong>الصفات الشخصية والمهنية:</strong> تضاف لاحقًا</li>
+            <li><strong>المهنة والأعمال:</strong> تضاف لاحقًا</li>
+            <li><strong>المسيرة والخبرات:</strong> تضاف لاحقًا</li>
+        </ul>
+
+        <p class="small-note">
+            سيتم استكمال المعلومات التعريفية والصورة لاحقًا.
+        </p>
+    </div>
+</section>
+
+<section id="program">
+    <h2 class="section-title">البرنامج الانتخابي</h2>
+
+    <p style="text-align:center;">
+        مساحة مخصصة لعرض البرنامج والمقترحات المتعلقة بالتنمية المحلية.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>🏗️ التنمية المحلية</h3>
+            <p>تضاف المقترحات المتعلقة بالمشاريع المحلية لاحقًا.</p>
+        </div>
+
+        <div class="card">
+            <h3>🧹 النظافة والبيئة</h3>
+            <p>تضاف المقترحات المتعلقة بالنظافة وتحسين المحيط لاحقًا.</p>
+        </div>
+
+        <div class="card">
+            <h3>🛣️ الطرق والمرافق</h3>
+            <p>تضاف الأولويات والمقترحات المتعلقة بالطرقات والمرافق.</p>
+        </div>
+
+        <div class="card">
+            <h3>👥 الشباب والرياضة</h3>
+            <p>تضاف المقترحات المتعلقة بالشباب والأنشطة الرياضية.</p>
+        </div>
+
+        <div class="card">
+            <h3>💧 الخدمات العمومية</h3>
+            <p>تضاف المقترحات المتعلقة باحتياجات السكان والخدمات.</p>
+        </div>
+
+        <div class="card">
+            <h3>💼 التنمية الاقتصادية</h3>
+            <p>تضاف المقترحات المتعلقة بالتنمية والنشاط الاقتصادي.</p>
+        </div>
+    </div>
+
+    <p class="small-note" style="text-align:center;">
+        هذه عناوين أولية، وليست وعودًا انتخابية نهائية.
+    </p>
+</section>
+
+<section id="news">
+    <h2 class="section-title">الأخبار والنشاطات</h2>
+
+    <div class="card">
+        <div class="media-placeholder">
+            مكان صورة النشاط أو الخبر
+        </div>
+        <h3>عنوان الخبر الأول</h3>
+        <p>سيتم إضافة الأخبار والتفاصيل عند توفرها.</p>
+    </div>
+
+    <div class="card">
+        <div class="media-placeholder">
+            مكان صورة النشاط أو الخبر
+        </div>
+        <h3>عنوان الخبر الثاني</h3>
+        <p>مساحة مخصصة لنشر أخبار النشاطات والمستجدات.</p>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2 class="section-title">معرض الصور والفيديوهات</h2>
+
+    <div class="grid">
+        <div class="card">
+            <div class="media-placeholder">
+                مكان الصورة الأولى
+            </div>
+            <p>صور النشاطات واللقاءات</p>
+        </div>
+
+        <div class="card">
+            <div class="media-placeholder">
+                مكان الصورة الثانية
+            </div>
+            <p>صور إضافية</p>
+        </div>
+
+        <div class="card">
+            <div class="media-placeholder">
+                مكان الفيديو
+            </div>
+            <p>فيديو تعريفي أو نشاط ميداني</p>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2 class="section-title">الأسئلة الشائعة</h2>
+
+    <div class="card">
+        <h3>ما الهدف من هذا الموقع؟</h3>
+        <p>التعريف بالمترشح وعرض البرنامج والأخبار والمعلومات المتعلقة بالموقع.</p>
+    </div>
+
+    <div class="card">
+        <h3>هل يمكن إضافة معلومات جديدة؟</h3>
+        <p>نعم، يمكن تحديث محتوى الموقع عند توفر المعلومات والصور.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">تواصل معنا</h2>
+
+    <div class="card" style="text-align:center;">
+        <p>ستضاف وسائل التواصل الرسمية هنا لاحقًا.</p>
+        <p>صفحة فيسبوك: تضاف لاحقًا</p>
+        <p>رقم التواصل: يضاف لاحقًا</p>
+    </div>
+</section>
+
 </main>
 
 <footer>
-  <p>الانتخابات المحلية - قجال</p>
+    <p>الانتخابات البلدية – قجال</p>
+    <p>حركة البناء الوطني</p>
+    <p>🇩🇿 الجزائر</p>
+    <p>© جميع الحقوق محفوظة</p>
 </footer>
 
 </body>
