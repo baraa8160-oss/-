@@ -1,4 +1,4 @@
-her<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,80 @@ her<!DOCTYPE html>
 <title>الانتخابات البلدية - قجال</title>
 <meta name="description" content="الموقع التعريفي بالمترشح عنقاق النوري وحركة البناء الوطني في قجال.">
 
-<style>
+<style> 
+    .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.algeria-flag {
+    width: 100px;
+    height: 65px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.green-half {
+    width: 50%;
+    background: #006233;
+}
+
+.white-half {
+    width: 50%;
+    background: #fff;
+}
+
+.crescent {
+    position: absolute;
+    top: 14px;
+    left: 43px;
+    color: #d21034;
+    font-size: 29px;
+    line-height: 1;
+}
+
+.star {
+    position: absolute;
+    top: 22px;
+    left: 55px;
+    color: #d21034;
+    font-size: 15px;
+    transform: rotate(15deg);
+}
+
+.header-text h1 {
+    margin-top: 0;
+}
+
+@media (max-width: 600px) {
+    .header-content {
+        gap: 10px;
+    }
+
+    .algeria-flag {
+        width: 75px;
+        height: 49px;
+    }
+
+    .crescent {
+        top: 10px;
+        left: 32px;
+        font-size: 23px;
+    }
+
+    .star {
+        top: 17px;
+        left: 41px;
+        font-size: 12px;
+    }
+}
 * {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -233,14 +306,22 @@ footer p {
 <body>
 
 <header>
-    <div class="flag" aria-label="ألوان العلم الجزائري">
-        <div class="flag-green"></div>
-        <div class="flag-white"></div>
-    </div>
+    <div class="header-content">
 
-    <h1>الانتخابات البلدية – قجال</h1>
-    <p>حركة البناء الوطني</p>
-    <p>معًا من أجل خدمة قجال والتنمية المحلية</p>
+        <div class="algeria-flag" aria-label="علم الجزائر">
+            <div class="green-half"></div>
+            <div class="white-half"></div>
+            <div class="crescent">☪</div>
+            <div class="star">★</div>
+        </div>
+
+        <div class="header-text">
+            <h1>الانتخابات البلدية – قجال</h1>
+            <p>حركة البناء الوطني</p>
+            <p>معًا من أجل خدمة قجال والتنمية المحلية</p>
+        </div>
+
+    </div>
 </header>
 
 <nav>
