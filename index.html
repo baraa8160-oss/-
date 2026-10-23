@@ -909,38 +909,6 @@ bottom: 15px;
 })();
 </script>
 
-(function () {
-    const electionDate = new Date("2026-11-28T00:00:00+01:00").getTime();
-
-    function updateCountdown() {
-        const now = Date.now();
-        let remaining = electionDate - now;
-
-        if (remaining <= 0) {
-            document.getElementById("countdown-box").innerHTML =
-                "<h2>🗳️ حلّ يوم الانتخابات البلدية</h2>";
-            return;
-        }
-
-        const days = Math.floor(remaining / 86400000);
-        remaining %= 86400000;
-
-        const hours = Math.floor(remaining / 3600000);
-        remaining %= 3600000;
-
-        const minutes = Math.floor(remaining / 60000);
-        const seconds = Math.floor((remaining % 60000) / 1000);
-
-        document.getElementById("cd-days").textContent = days;
-        document.getElementById("cd-hours").textContent = hours;
-        document.getElementById("cd-minutes").textContent = minutes;
-        document.getElementById("cd-seconds").textContent = seconds;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-})();
-</script>
 <div class="floating-contact" aria-label="أزرار التواصل"><a class="floating-whatsapp"
    href="https://wa.me/213665325648"
    target="_blank"
