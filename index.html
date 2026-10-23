@@ -835,48 +835,80 @@ bottom: 15px;
 </head>
 
 <body> 
-  <!-- العد التنازلي للانتخابات -->
+  <!-- عداد الانتخابات المصغر -->
 <section id="countdown-box" style="
     text-align:center;
-    margin:25px 12px;
-    padding:25px 12px;
-    background:linear-gradient(135deg,#075b3b,#0b8051);
+    margin:12px auto;
+    padding:12px 8px;
+    max-width:500px;
+    background:#075b3b;
     color:white;
-    border-radius:18px;
-    box-shadow:0 6px 20px #0002;
+    border-radius:12px;
 ">
-    <h2 style="margin-top:0;">🗳️ العد التنازلي للانتخابات البلدية</h2>
-    <p>قجال – الجزائر</p>
+    <h3 style="margin:0 0 5px;font-size:17px;">
+        🗳️ العد التنازلي للانتخابات
+    </h3>
 
-    <div style="
-        display:flex;
-        justify-content:center;
-        flex-wrap:wrap;
-        gap:10px;
-        direction:rtl;
-    ">
-        <div style="background:#ffffff20;padding:12px;border-radius:10px;min-width:65px;">
-            <strong id="cd-days" style="font-size:27px;">--</strong>
-            <div>يوم</div>
+    <p style="margin:0 0 10px;font-size:13px;">
+        قجال - الجزائر | 28 نوفمبر 2026
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:6px;direction:rtl;">
+        <div style="background:#ffffff20;padding:6px 9px;border-radius:7px;min-width:48px;">
+            <strong id="cd-days" style="font-size:20px;">--</strong>
+            <div style="font-size:11px;">يوم</div>
         </div>
-        <div style="background:#ffffff20;padding:12px;border-radius:10px;min-width:65px;">
-            <strong id="cd-hours" style="font-size:27px;">--</strong>
-            <div>ساعة</div>
+
+        <div style="background:#ffffff20;padding:6px 9px;border-radius:7px;min-width:48px;">
+            <strong id="cd-hours" style="font-size:20px;">--</strong>
+            <div style="font-size:11px;">ساعة</div>
         </div>
-        <div style="background:#ffffff20;padding:12px;border-radius:10px;min-width:65px;">
-            <strong id="cd-minutes" style="font-size:27px;">--</strong>
-            <div>دقيقة</div>
+
+        <div style="background:#ffffff20;padding:6px 9px;border-radius:7px;min-width:48px;">
+            <strong id="cd-minutes" style="font-size:20px;">--</strong>
+            <div style="font-size:11px;">دقيقة</div>
         </div>
-        <div style="background:#ffffff20;padding:12px;border-radius:10px;min-width:65px;">
-            <strong id="cd-seconds" style="font-size:27px;">--</strong>
-            <div>ثانية</div>
+
+        <div style="background:#ffffff20;padding:6px 9px;border-radius:7px;min-width:48px;">
+            <strong id="cd-seconds" style="font-size:20px;">--</strong>
+            <div style="font-size:11px;">ثانية</div>
         </div>
     </div>
-
-    <p style="margin-bottom:0;">📅 السبت 28 نوفمبر 2026</p>
 </section>
 
 <script>
+(function () {
+    const electionDate = new Date("2026-11-28T00:00:00+01:00").getTime();
+
+    function updateCountdown() {
+        let remaining = electionDate - Date.now();
+
+        if (remaining <= 0) {
+            document.getElementById("countdown-box").innerHTML =
+                "<h3>🗳️ حلّ يوم الانتخابات البلدية</h3>";
+            return;
+        }
+
+        const days = Math.floor(remaining / 86400000);
+        remaining %= 86400000;
+
+        const hours = Math.floor(remaining / 3600000);
+        remaining %= 3600000;
+
+        const minutes = Math.floor(remaining / 60000);
+        const seconds = Math.floor((remaining % 60000) / 1000);
+
+        document.getElementById("cd-days").textContent = days;
+        document.getElementById("cd-hours").textContent = hours;
+        document.getElementById("cd-minutes").textContent = minutes;
+        document.getElementById("cd-seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+})();
+</script>
+
 (function () {
     const electionDate = new Date("2026-11-28T00:00:00+01:00").getTime();
 
