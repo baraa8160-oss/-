@@ -543,7 +543,52 @@ section.content-section {
 .news-card {
     margin-bottom: 16px;
 }
+/* تحسين قسم الأخبار والنشاطات */
+#news .news-card {
+    padding: 22px;
+    border: 1px solid #dce9df;
+    border-right: 4px solid #075b3b;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ffffff, #f7faf8);
+    box-shadow: 0 5px 18px #075b3b0d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+#news .news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 24px #075b3b18;
+}
+
+#news .media-placeholder {
+    min-height: 150px;
+    background: linear-gradient(135deg, #edf5ef, #ffffff);
+    border: 1px dashed #9bbca4;
+    color: #075b3b;
+    font-weight: bold;
+}
+
+#news .news-card h3 {
+    color: #075b3b;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+#news .news-card p {
+    color: #596b60;
+    margin-bottom: 0;
+}
+
+@media (max-width: 500px) {
+    #news .news-card {
+        padding: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #news .news-card {
+        transition: none;
+    }
+}
 .small-note {
     color: #718076;
     font-size: 13px;
