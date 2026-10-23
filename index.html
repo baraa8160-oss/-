@@ -41,7 +41,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 15px;
-}
+} 
 
 body {
     margin: 0;
@@ -49,6 +49,70 @@ body {
     background: #f5f8f5;
     color: var(--text);
     line-height: 1.9;
+} 
+    /* تحسينات بصرية للواجهة الرئيسية */
+body {
+    animation: pageAppear 0.8s ease-out;
+}
+
+@keyframes pageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسين ظهور العلم المتحرك */
+.algeria-flag {
+    transform-origin: center;
+    filter: drop-shadow(0 5px 8px #0003);
+    transition: filter 0.3s ease;
+}
+
+.algeria-flag:hover {
+    filter: drop-shadow(0 7px 12px #0005);
+}
+
+/* تحسين أزرار الموقع */
+.button {
+    box-shadow: 0 3px 10px #075b3b12;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 16px #075b3b25;
+}
+
+/* تحسين بطاقة المترشح */
+.candidate {
+    border-top: 4px solid #075b3b;
+    box-shadow: 0 8px 25px #075b3b12;
+}
+
+.candidate-photo {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.candidate-photo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px #0003;
+}
+
+/* احترام إعدادات تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+    }
+
+    .button,
+    .candidate-photo {
+        transition: none;
+    }
 }
 
 img {
