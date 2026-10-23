@@ -492,7 +492,54 @@ section.content-section {
     padding: 15px;
     margin-bottom: 13px;
 }
+/* تحسين معرض الصور والفيديوهات */
+#gallery .grid .card {
+    overflow: hidden;
+    border: 1px solid #dce9df;
+    border-radius: 15px;
+    background: linear-gradient(180deg, #ffffff, #f7faf8);
+    box-shadow: 0 5px 18px #075b3b0d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+#gallery .grid .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #075b3b18;
+}
+
+#gallery .media-placeholder {
+    min-height: 180px;
+    border: 1px dashed #9bbca4;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #edf5ef, #ffffff);
+    color: #075b3b;
+    font-weight: bold;
+    transition: background 0.25s ease;
+}
+
+#gallery .grid .card:hover .media-placeholder {
+    background: linear-gradient(135deg, #e2f0e6, #f8fcf9);
+}
+
+#gallery .grid .card p {
+    color: #315b43;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 500px) {
+    #gallery .media-placeholder {
+        min-height: 150px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #gallery .grid .card,
+    #gallery .media-placeholder {
+        transition: none;
+    }
+}
 .news-card {
     margin-bottom: 16px;
 }
