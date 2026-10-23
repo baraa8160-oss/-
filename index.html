@@ -18,7 +18,215 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الانتخابات البلدية - قجال</title>
 <meta name="description" content="الموقع التعريفي بالمترشح عنقاق النوري وحركة البناء الوطني في قجال.">
+/* ===== التصميم الاحترافي الجديد ===== */
 
+:root {
+    --primary: #075b3b;
+    --primary-dark: #043d2a;
+    --gold: #c9a44c;
+    --background: #f5f7f5;
+    --text: #24352d;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Tahoma, sans-serif;
+    line-height: 1.9;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(
+        135deg,
+        var(--primary-dark),
+        var(--primary)
+    );
+    color: white;
+    text-align: center;
+    padding: 30px 16px;
+    border-bottom: 5px solid var(--gold);
+}
+
+header h1 {
+    font-size: clamp(24px, 5vw, 36px);
+    line-height: 1.6;
+    margin: 12px 0;
+    font-weight: 800;
+}
+
+header p {
+    font-size: 17px;
+    margin: 8px 0;
+}
+
+.algeria-flag {
+    display: block;
+    width: 100px;
+    max-width: 35%;
+    height: auto;
+    margin: 0 auto 15px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 10px;
+    background: white;
+    border-bottom: 1px solid #e2e9e4;
+}
+
+nav a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 13px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+nav a:hover {
+    background: #e8f2ec;
+}
+
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px 16px;
+}
+
+section {
+    margin: 25px auto;
+    padding: 28px 20px;
+    background: white;
+    border: 1px solid #e4ebe6;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 50, 25, 0.05);
+}
+
+.section-title {
+    color: var(--primary);
+    font-size: 25px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 auto 25px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 16px 0;
+    box-shadow: 0 4px 14px rgba(0, 50, 25, 0.06);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-top: 0;
+}
+
+.candidate-photo {
+    display: block;
+    width: 230px;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 14px;
+    border: 3px solid white;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.13);
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    overflow-wrap: anywhere;
+}
+
+button {
+    font-family: inherit;
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+footer {
+    background: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 28px 16px;
+    margin-top: 30px;
+    border-top: 5px solid var(--gold);
+}
+
+footer a {
+    color: #f4d78c;
+}
+
+#visitor-comments {
+    width: 100%;
+    max-width: 850px;
+    margin: 30px auto;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
+    header {
+        padding: 24px 12px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        gap: 6px;
+        padding: 12px 8px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 7px 10px;
+    }
+
+    main {
+        padding: 5px 10px;
+    }
+
+    section {
+        padding: 22px 14px;
+        margin: 18px auto;
+        border-radius: 12px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .candidate-photo {
+        width: 190px;
+    }
+}
 <style> 
     .header-content {
     display: flex;
