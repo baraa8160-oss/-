@@ -1254,5 +1254,16 @@ function googleTranslateElementInit() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" 
+style="display:none;position:fixed;bottom:20px;right:20px;width:48px;height:48px;background:#198754;color:white;border:none;border-radius:50%;font-size:26px;cursor:pointer;z-index:9999;box-shadow:0 3px 8px #888;">
+↑
+</button>
+
+<script>
+window.onscroll = function() {
+  document.getElementById("topBtn").style.display =
+    window.scrollY > 250 ? "block" : "none";
+};
+</script>
 </body>
 </html>
