@@ -609,36 +609,42 @@ section.content-section {
 }
 
 .contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 24px auto 6px;
+    max-width: 430px;
 }
-
 .contact-button {
-    display: block;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 58px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    border-radius: 16px;
     text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 13px 16px;
-    border-radius: 9px;
-    transition: 0.2s;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid rgba(255,255,255,.9);
+    box-shadow: 0 7px 18px rgba(4,61,42,.15);
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
-
 .contact-button:hover {
-    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 11px 24px rgba(4,61,42,.22);
+    filter: brightness(1.04);
 }
-
-.whatsapp {
-    background: #20b95b;
-}
-
-.facebook {
-    background: #1877f2;
-}
-
-.phone {
-    background: var(--green);
+.contact-button:active { transform: scale(.98); }
+.contact-button.whatsapp { background: linear-gradient(135deg,#2bd66f,#128c4a); }
+.contact-button.facebook { background: linear-gradient(135deg,#3994ff,#0866ff); }
+.contact-button.phone { background: linear-gradient(135deg,#0b7950,#043d2a); }
+@media (max-width: 500px) {
+    .contact-buttons { gap: 11px; }
+    .contact-button { min-height: 54px; padding: 13px 14px; font-size: 15px; border-radius: 14px; }
 }
 
 .share-section {
@@ -780,49 +786,7 @@ footer a {
         text-align: center;
     }
 } 
-    /* أزرار التواصل العائمة */
-/* أزرار تواصل عائمة بتصميم أنيق */
-.floating-contact {
-    position: fixed;
-    right: 14px;
-    bottom: 18px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-}
-.floating-contact a {
-    min-width: 142px;
-    min-height: 48px;
-    box-sizing: border-box;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    border-radius: 28px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 700;
-    box-shadow: 0 5px 16px rgba(0,0,0,.22);
-    border: 2px solid rgba(255,255,255,.95);
-    direction: rtl;
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-.floating-contact a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,.28);
-}
-.floating-whatsapp { background: linear-gradient(135deg,#2bd66f,#128c4a); }
-.floating-phone { background: linear-gradient(135deg,#0b7950,#043d2a); }
-.floating-facebook { background: linear-gradient(135deg,#3994ff,#0866ff); }
-@media (max-width: 500px) {
-    .floating-contact { right: 8px; bottom: 12px; gap: 8px; }
-    .floating-contact a { min-width: 128px; min-height: 43px; padding: 0 12px; font-size: 14px; }
-} 
-  /* نافذة الفيديو العائمة */
+      /* نافذة الفيديو العائمة */
 #floating-video {
 position: fixed;
 top: 110px;
@@ -1022,26 +986,7 @@ height: 105px;
 })();
 </script>
 
-<div class="floating-contact" aria-label="أزرار التواصل"><a class="floating-whatsapp"
-   href="https://wa.me/213665325648"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="واتساب"
-   title="واتساب">W</a>
 
-<a class="floating-phone"
-   href="tel:+213665325648"
-   aria-label="اتصال هاتفي"
-   title="اتصل بنا">☎</a>
-
-<a class="floating-facebook"
-   href="https://www.facebook.com/share//1DoGynatgC"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="فيسبوك"
-   title="فيسبوك">f</a>
-
-</div>
 <div class="top-line"></div>
 
 <header>
