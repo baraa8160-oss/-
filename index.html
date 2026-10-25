@@ -918,6 +918,41 @@ height: 105px;
     .news-ticker { min-height: 44px; }
 }
 
+
+/* تنسيق أنيق لحقوق الموقع واسم المطوّر */
+footer .footer-rights {
+    margin: 12px 0;
+    color: #ffffff;
+    font-size: 14px;
+}
+footer .footer-credit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin: 16px auto 4px;
+    color: #e8e8e8;
+    font-size: 13px;
+}
+footer .footer-credit a {
+    display: inline-block;
+    color: #f2cf70;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    padding: 7px 16px;
+    border: 1px solid #d5b15d;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #123f2d, #075b3b);
+    box-shadow: 0 3px 12px #0003;
+    transition: transform .2s ease, background .2s ease;
+}
+footer .footer-credit a:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1b5c40, #087447);
+}
+
 </style>
 </head>
 
@@ -1281,18 +1316,15 @@ height: 105px;
 </main>
 
 <footer>
-    <p><strong>الانتخابات البلدية – قجال</strong></p>
-    <p>حركة البناء الوطني</p>
-    <p>🇩🇿 الجزائر</p>
-    <p>© جميع الحقوق محفوظة</p>
+    <p class="footer-rights">© جميع الحقوق محفوظة</p>
 
     <hr class="footer-divider">
 
-    <p style="font-size:14px;color:#ddd;">
-        تصميم وتطوير الموقع
+    <p class="footer-credit">
+        <span>تصميم وتطوير الموقع</span>
         <a href="https://www.facebook.com/share/1FAXqY8b73/"
            target="_blank"
-           rel="noopener noreferrer">MENNAD KATiB</a>
+           rel="noopener noreferrer">MENNAD KATIB</a>
     </p>
 
 </footer>
