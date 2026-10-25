@@ -781,55 +781,46 @@ footer a {
     }
 } 
     /* أزرار التواصل العائمة */
+/* أزرار تواصل عائمة بتصميم أنيق */
 .floating-contact {
-position: fixed;
-right: 12px;
-bottom: 18px;
-z-index: 9999;
-display: flex;
-flex-direction: column;
-gap: 10px;
+    position: fixed;
+    right: 14px;
+    bottom: 18px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
 }
-
 .floating-contact a {
-width: 48px;
-height: 48px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-color: white;
-text-decoration: none;
-font-size: 23px;
-font-weight: bold;
-box-shadow: 0 3px 12px #0003;
-border: 2px solid white;
+    min-width: 142px;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border-radius: 28px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 16px rgba(0,0,0,.22);
+    border: 2px solid rgba(255,255,255,.95);
+    direction: rtl;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
-
-.floating-whatsapp {
-background: #20b95b;
+.floating-contact a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.28);
 }
-
-.floating-phone {
-background: #075b3b;
-}
-
-.floating-facebook {
-background: #1877f2;
-}
-
+.floating-whatsapp { background: linear-gradient(135deg,#2bd66f,#128c4a); }
+.floating-phone { background: linear-gradient(135deg,#0b7950,#043d2a); }
+.floating-facebook { background: linear-gradient(135deg,#3994ff,#0866ff); }
 @media (max-width: 500px) {
-.floating-contact {
-right: 10px;
-bottom: 15px;
-}
-
-.floating-contact a {
-    width: 44px;
-    height: 44px;
-    font-size: 21px;
-}
-
+    .floating-contact { right: 8px; bottom: 12px; gap: 8px; }
+    .floating-contact a { min-width: 128px; min-height: 43px; padding: 0 12px; font-size: 14px; }
 } 
   /* نافذة الفيديو العائمة */
 #floating-video {
