@@ -609,42 +609,52 @@ section.content-section {
 }
 
 .contact-buttons {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin: 24px auto 6px;
-    max-width: 430px;
+    display: flex;
+    direction: rtl;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 26px auto 12px;
+    max-width: 520px;
 }
 .contact-button {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100px;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    transition: transform .2s ease;
+}
+.contact-button:hover { transform: translateY(-4px); }
+.contact-button:active { transform: scale(.96); }
+.contact-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    min-height: 58px;
-    box-sizing: border-box;
-    padding: 15px 20px;
-    border-radius: 16px;
-    text-decoration: none;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
     color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    border: 2px solid rgba(255,255,255,.9);
-    box-shadow: 0 7px 18px rgba(4,61,42,.15);
-    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    font-size: 37px;
+    font-weight: bold;
+    border: 4px solid #fff;
+    box-shadow: 0 5px 15px #043d2a25, 0 0 0 2px currentColor;
 }
-.contact-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 11px 24px rgba(4,61,42,.22);
-    filter: brightness(1.04);
-}
-.contact-button:active { transform: scale(.98); }
-.contact-button.whatsapp { background: linear-gradient(135deg,#2bd66f,#128c4a); }
-.contact-button.facebook { background: linear-gradient(135deg,#3994ff,#0866ff); }
-.contact-button.phone { background: linear-gradient(135deg,#0b7950,#043d2a); }
+.contact-button.whatsapp .contact-icon { background: #20b85a; color: #20b85a; }
+.contact-button.facebook .contact-icon { background: #1877f2; color: #1877f2; }
+.contact-button.phone .contact-icon { background: #087447; color: #087447; }
+.contact-icon span { color: #fff; }
 @media (max-width: 500px) {
-    .contact-buttons { gap: 11px; }
-    .contact-button { min-height: 54px; padding: 13px 14px; font-size: 15px; border-radius: 14px; }
+    .contact-buttons { gap: 13px; }
+    .contact-button { width: 82px; font-size: 12px; }
+    .contact-icon { width: 66px; height: 66px; font-size: 32px; }
 }
 
 .share-section {
@@ -1209,24 +1219,30 @@ height: 105px;
         <h3>نحن هنا للتواصل معكم</h3>
         <p>يسعدنا استقبال استفساراتكم وملاحظاتكم.</p>
 
-        <div class="contact-buttons">
+        <div class="contact-buttons" aria-label="أزرار التواصل">
             <a class="contact-button whatsapp"
                href="https://wa.me/213665325648"
                target="_blank"
-               rel="noopener noreferrer">
-                🟢 تواصل معنا عبر واتساب
+               rel="noopener noreferrer"
+               aria-label="التواصل عبر واتساب">
+                <span class="contact-icon"><span>☏</span></span>
+                <span>واتساب</span>
             </a>
 
             <a class="contact-button facebook"
                href="https://www.facebook.com/share//1DoGynatgC"
                target="_blank"
-               rel="noopener noreferrer">
-                🔵 صفحتنا على فيسبوك
+               rel="noopener noreferrer"
+               aria-label="صفحتنا على فيسبوك">
+                <span class="contact-icon"><span>f</span></span>
+                <span>فيسبوك</span>
             </a>
 
             <a class="contact-button phone"
-               href="tel:+213665325648">
-                📞 اتصل بنا هاتفيًا
+               href="tel:+213665325648"
+               aria-label="اتصل بنا هاتفيًا">
+                <span class="contact-icon"><span>☎</span></span>
+                <span>اتصال هاتفي</span>
             </a>
         </div>
 
