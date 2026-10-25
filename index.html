@@ -928,14 +928,14 @@ height: 105px;
 }
 .news-ticker-text {
     display: inline-block;
-    padding-right: 100%;
-    animation: qejalTicker 24s linear infinite;
+    padding: 0 12px;
+    animation: qejalTicker 18s linear infinite;
 }
 .news-ticker:hover .news-ticker-text {
     animation-play-state: paused;
 }
 @keyframes qejalTicker {
-    from { transform: translateX(0); }
+    from { transform: translateX(100%); }
     to { transform: translateX(-100%); }
 }
 @media (prefers-reduced-motion: reduce) {
