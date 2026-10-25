@@ -898,6 +898,55 @@ right: 8px;
 height: 105px;
 }
 }
+
+/* شريط الأخبار المتحرك */
+.news-ticker {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border-bottom: 2px solid #d5b15d;
+    box-shadow: 0 3px 10px #043d2a10;
+    min-height: 48px;
+}
+.news-ticker-label {
+    flex: 0 0 auto;
+    background: #d71935;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 14px;
+    position: relative;
+    z-index: 1;
+}
+.news-ticker-track {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #075b3b;
+    font-weight: bold;
+}
+.news-ticker-text {
+    display: inline-block;
+    padding-right: 100%;
+    animation: qejalTicker 24s linear infinite;
+}
+.news-ticker:hover .news-ticker-text {
+    animation-play-state: paused;
+}
+@keyframes qejalTicker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .news-ticker-track { overflow-x: auto; }
+    .news-ticker-text { animation: none; padding: 10px 14px; white-space: normal; }
+}
+@media (max-width: 500px) {
+    .news-ticker-label { padding: 9px 10px; font-size: 13px; }
+    .news-ticker { min-height: 44px; }
+}
+
 </style>
 </head>
 
@@ -1009,6 +1058,13 @@ height: 105px;
         </div>
     </div>
 </header>
+
+<div class="news-ticker" role="region" aria-label="شريط الأخبار والمستجدات">
+    <span class="news-ticker-label">آخر المستجدات</span>
+    <div class="news-ticker-track">
+        <span class="news-ticker-text">مرحبًا بكم في الموقع التعريفي بالانتخابات البلدية – قجال • ستُنشر الأخبار والنشاطات هنا عند إضافتها • تابعوا قسم الأخبار للاطلاع على المستجدات المعلنة</span>
+    </div>
+</div>
 
 <nav aria-label="القائمة الرئيسية">
     <a href="#home">الرئيسية</a>
