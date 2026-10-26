@@ -966,6 +966,160 @@ footer .footer-credit a:hover {
     overflow: hidden;
 }
 
+
+/* تحسين شامل ومتناسق للتصميم */
+:root {
+    --green: #075b3b;
+    --dark: #043d2a;
+    --light: #edf5ef;
+    --red: #d71935;
+    --gold: #d5b15d;
+}
+header {
+    position: relative;
+    overflow: hidden;
+    padding: 30px 16px 38px;
+    background:
+        radial-gradient(circle at 12% 10%, #ffffff18, transparent 30%),
+        linear-gradient(135deg, #032f20 0%, #075b3b 55%, #087447 100%);
+}
+header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to left, var(--red) 0 33.33%, #fff 33.33% 66.66%, var(--green) 66.66% 100%);
+}
+.header-content { position: relative; z-index: 1; }
+.algeria-flag { border-radius: 12px; }
+.party {
+    background: #ffffff12;
+    border-color: #d5b15d99;
+    color: #ffe8a0;
+    padding: 6px 17px;
+}
+nav {
+    position: sticky;
+    top: 0;
+    padding: 11px 8px;
+    gap: 7px;
+    border-bottom: 1px solid #dce9df;
+}
+nav a {
+    border: 1px solid #e3eee6;
+    border-radius: 999px;
+    padding: 8px 14px;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+nav a:hover, nav a:focus-visible {
+    color: #fff;
+    background: var(--green);
+    border-color: var(--green);
+    transform: translateY(-1px);
+}
+.hero {
+    padding: clamp(36px, 6vw, 62px) 18px;
+}
+.hero-inner { position: relative; }
+.hero-label {
+    border-color: #d5b15d;
+    box-shadow: 0 4px 14px #075b3b10;
+}
+.button {
+    border-radius: 999px;
+    padding: 12px 22px;
+}
+section.content-section {
+    border-color: #e0ebe3;
+    box-shadow: 0 8px 26px #043d2a0a;
+    transition: box-shadow .25s ease, border-color .25s ease;
+}
+section.content-section:hover {
+    border-color: #d0e2d5;
+    box-shadow: 0 10px 30px #043d2a10;
+}
+.section-heading h2 { letter-spacing: -.3px; }
+.heading-line {
+    width: 64px;
+    height: 4px;
+    background: linear-gradient(to left, var(--red) 0 50%, var(--gold) 50% 100%);
+}
+.card {
+    border-color: #e0ebe3;
+    box-shadow: 0 5px 18px #043d2a08;
+}
+.program-card {
+    position: relative;
+    overflow: hidden;
+    border-top: 0;
+    border-bottom: 3px solid var(--green);
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+.program-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to left, var(--green), #d5b15d);
+}
+.program-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px #075b3b16;
+}
+.program-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: #edf5ef;
+}
+.news-ticker {
+    border-bottom-color: var(--gold);
+}
+.news-ticker-label {
+    width: calc(100% - 24px);
+    margin: 8px 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px #d7193522;
+}
+.news-ticker-track { padding: 8px 0; }
+#visitor-comments, #contact .contact-card {
+    box-shadow: 0 6px 22px #043d2a0a;
+}
+footer {
+    background:
+        radial-gradient(circle at 50% 0, #087447, transparent 55%),
+        var(--dark);
+}
+#topBtn { transition: transform .2s ease; }
+#topBtn:hover { transform: translateY(-3px); }
+@media (max-width: 600px) {
+    header { padding: 23px 12px 30px; }
+    nav {
+        position: relative;
+        gap: 6px;
+        padding: 9px 5px;
+    }
+    nav a { padding: 7px 11px; font-size: 12px; }
+    .party { font-size: 13px; }
+    .hero { padding: 34px 13px; }
+    .button { padding: 11px 16px; }
+    section.content-section { box-shadow: 0 4px 15px #043d2a08; }
+}
+@media (prefers-reduced-motion: reduce) {
+    nav a, .program-card, section.content-section, #topBtn {
+        transition: none;
+    }
+    .program-card:hover, nav a:hover { transform: none; }
+}
+
 </style>
 </head>
 
