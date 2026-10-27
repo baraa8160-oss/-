@@ -1842,5 +1842,22 @@ window.onscroll = function() {
   });
 })();
 </script>
+
+<!-- Firebase لإظهار فيديوهات الزوار -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+if (!window.firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: "AIzaSyBtvENwpplAYigr6rfMwAlObKtuZyD0c-Y",
+    authDomain: "qejalelection.firebaseapp.com",
+    projectId: "qejalelection",
+    storageBucket: "qejalelection.firebasestorage.app",
+    messagingSenderId: "1071140976247",
+    appId: "1:1071140976247:web:da1b310872386977d2b872"
+  });
+}
+</script>
+<script src="visitor-videos.js"></script>
 </body>
 </html>
