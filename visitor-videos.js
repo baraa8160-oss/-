@@ -126,9 +126,15 @@
     const auth = firebase.auth();
     document.getElementById("qv-admin-login").addEventListener("click", async () => {
       try {
+        adminStatus.textContent = "جارٍ فتح تسجيل الدخول بحساب Google...";
         const provider = new firebase.auth.GoogleAuthProvider();
-        await auth.signInWithPopup(provider);
-      } catch (e) { adminStatus.textContent = "تعذر تسجيل الدخول. جرّب فتح الموقع في Chrome."; }
+        await auth.signInWithRedirect(provider);
+      } catch (e) {
+        adminStatus.textContent = "تعذر تسجيل الدخول: " + (e.code || e.message || "تحقق من إعدادات Firebase");
+      }
+    });
+    auth.getRedirectResult().catch(e => {
+      adminStatus.textContent = "فشل تسجيل الدخول: " + (e.code || e.message || "تحقق من إعدادات Firebase");
     });
     auth.onAuthStateChanged(user => {
       isAdmin = !!(user && user.email && user.email.toLowerCase() === adminEmail);
