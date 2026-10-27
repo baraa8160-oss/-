@@ -1770,6 +1770,23 @@ window.onscroll = function() {
   const reopen = document.getElementById("video-reopen");
 
   let minimized = false;
+  let resizeMode = false;
+  let resizeMoved = false;
+
+  resize.addEventListener("click", function () {
+    if (resizeMoved) {
+      resizeMoved = false;
+      return;
+    }
+    resizeMode = !resizeMode;
+    resize.style.background = resizeMode
+      ? "linear-gradient(135deg, #d5b15d, #fff0b8)"
+      : "linear-gradient(135deg, #f5fbf6, #dcebe0)";
+    resize.style.borderTopColor = resizeMode ? "#b28a2d" : "#c4d9ca";
+    resize.innerHTML = resizeMode
+      ? '<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:#075b3b;color:white;font-size:17px">⤢</span> وضع تغيير الحجم مفعّل — اسحب الإطار'
+      : '<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:#075b3b;color:white;font-size:17px">⤢</span> اضغط ثم اسحب لتغيير الحجم';
+  });
 
   header.addEventListener("pointerdown", function (e) {
     if (e.target.closest("button")) return;
@@ -1812,7 +1829,9 @@ window.onscroll = function() {
   });
 
   resize.addEventListener("pointerdown", function (e) {
+    if (!resizeMode) return;
     e.preventDefault();
+    resizeMoved = false;
     const startX = e.clientX;
     const startY = e.clientY;
     const startW = box.offsetWidth;
@@ -1821,6 +1840,7 @@ window.onscroll = function() {
     resize.setPointerCapture(e.pointerId);
 
     function move(ev) {
+      if (Math.abs(ev.clientX - startX) > 3 || Math.abs(ev.clientY - startY) > 3) resizeMoved = true;
       box.style.width = Math.max(
         160,
         Math.min(window.innerWidth - 16,
