@@ -134,11 +134,11 @@
       isAdmin = !!(user && user.email && user.email.toLowerCase() === adminEmail);
       adminStatus.textContent = isAdmin ? "تم تسجيل دخول المدير." : (user ? "هذا الحساب ليس حساب المدير." : "إدارة الفيديوهات متاحة للمدير فقط.");
       const db = firebase.firestore();
-      db.collection("videos").orderBy("createdAt", "desc").limit(12).get().then(snapshot => {
+      db.collection("videos").orderBy("createdAt", "desc").limit(12).onSnapshot(snapshot => {
         feed.innerHTML = "";
         snapshot.forEach(doc => addVideo(doc.id, doc.data().videoUrl));
         if (!feed.children.length) say("لا توجد فيديوهات منشورة بعد. كن أول من يشارك!");
-      }).catch(() => say("تعذر تحميل الفيديوهات. تحقق من إعدادات Firebase."));
+      }, () => say("تعذر تحميل الفيديوهات. تحقق من إعدادات Firebase."));
     });
   } else {
     say("لم يتم تحميل Firebase بعد. يرجى تحديث إعداد الموقع.");
