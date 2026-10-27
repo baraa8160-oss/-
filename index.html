@@ -842,12 +842,35 @@ font-size: 13px;
 }
 
 #floating-video .resize-handle {
-height: 12px;
-background: #e5eee8;
+min-height: 32px;
+box-sizing: border-box;
+background: linear-gradient(135deg, #f5fbf6, #dcebe0);
+border-top: 1px solid #c4d9ca;
 cursor: nwse-resize;
+touch-action: none;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 6px;
 text-align: center;
 color: #075b3b;
-font-size: 10px;
+font-size: 12px;
+font-weight: 800;
+user-select: none;
+-webkit-user-select: none;
+}
+#floating-video .resize-handle::before {
+content: "⤢";
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 22px;
+height: 22px;
+border-radius: 6px;
+background: #075b3b;
+color: #fff;
+font-size: 17px;
+line-height: 1;
 }
 
 @media (max-width: 480px) {
@@ -1726,7 +1749,7 @@ window.onscroll = function() {
     </div>
   </div>
 
-  <div class="resize-handle" id="video-resize">◢ اسحب لتغيير الحجم</div>
+  <div class="resize-handle" id="video-resize" role="button" aria-label="اسحب لتغيير حجم إطار الفيديو">اسحب لتغيير الحجم</div>
 </div>
 
 <button type="button" id="video-reopen"
