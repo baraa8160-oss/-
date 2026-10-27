@@ -124,43 +124,27 @@
 
   if (window.firebase && firebase.apps && firebase.apps.length) {
     const auth = firebase.auth();
-    adminStatus.style.cssText = "font-size:14px;font-weight:bold;color:#075b3b;background:#eef8f1;padding:8px;border-radius:8px;margin:8px auto;max-width:95%;";
     document.getElementById("qv-admin-login").addEventListener("click", async () => {
       try {
-        adminStatus.textContent = "جارٍ فتح نافذة Google لتسجيل الدخول...";
+        adminStatus.textContent = "جارٍ فتح تسجيل الدخول بحساب Google...";
         const provider = new firebase.auth.GoogleAuthProvider();
-        provider.setCustomParameters({ prompt: "select_account" });
-        const result = await auth.signInWithPopup(provider);
-        const email = result.user && result.user.email ? result.user.email.toLowerCase() : "";
-        isAdmin = email === adminEmail;
-        adminStatus.textContent = isAdmin
-          ? "✅ تم تسجيل دخول المدير: " + email
-          : "⚠️ تم الدخول بحساب " + (email || "غير معروف") + "، لكنه ليس حساب المدير المعتمد.";
-        renderCurrentVideos();
+        await auth.signInWithRedirect(provider);
       } catch (e) {
         adminStatus.textContent = "تعذر تسجيل الدخول: " + (e.code || e.message || "تحقق من إعدادات Firebase");
       }
     });
-
-    let latestVideos = [];
-    function renderCurrentVideos() {
-      feed.innerHTML = "";
-      latestVideos.forEach(item => addVideo(item.id, item.url));
-      if (!feed.children.length) say("لا توجد فيديوهات منشورة بعد. كن أول من يشارك!");
-    }
-
+    auth.getRedirectResult().catch(e => {
+      adminStatus.textContent = "فشل تسجيل الدخول: " + (e.code || e.message || "تحقق من إعدادات Firebase");
+    });
     auth.onAuthStateChanged(user => {
       isAdmin = !!(user && user.email && user.email.toLowerCase() === adminEmail);
-      adminStatus.textContent = isAdmin
-        ? "✅ تم تسجيل دخول المدير: " + user.email
-        : (user ? "⚠️ الحساب الحالي ليس حساب المدير: " + (user.email || "") : "لم يتم تسجيل دخول المدير بعد. اضغط الزر وسجّل بحساب المدير.");
-      firebase.firestore().collection("videos").orderBy("createdAt", "desc").limit(12).onSnapshot(snapshot => {
-        latestVideos = [];
-        snapshot.forEach(doc => latestVideos.push({ id: doc.id, url: doc.data().videoUrl }));
-        renderCurrentVideos();
-      }, e => {
-        say("تعذر تحميل الفيديوهات: " + (e.code || "تحقق من إعدادات Firebase."));
-      });
+      adminStatus.textContent = isAdmin ? "تم تسجيل دخول المدير." : (user ? "هذا الحساب ليس حساب المدير." : "إدارة الفيديوهات متاحة للمدير فقط.");
+      const db = firebase.firestore();
+      db.collection("videos").orderBy("createdAt", "desc").limit(12).onSnapshot(snapshot => {
+        feed.innerHTML = "";
+        snapshot.forEach(doc => addVideo(doc.id, doc.data().videoUrl));
+        if (!feed.children.length) say("لا توجد فيديوهات منشورة بعد. كن أول من يشارك!");
+      }, () => say("تعذر تحميل الفيديوهات. تحقق من إعدادات Firebase."));
     });
   } else {
     say("لم يتم تحميل Firebase بعد. يرجى تحديث إعداد الموقع.");
