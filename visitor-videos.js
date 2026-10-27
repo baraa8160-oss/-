@@ -5,7 +5,13 @@
   box.innerHTML = `
     <div style="padding:10px;text-align:center;color:#075b3b">
       <p>شارك فيديو لقجال (20 ثانية كحد أقصى)</p>
-      <button id="qv-admin-login" type="button" style="display:block;margin:8px auto;background:#075b3b;color:white;border:0;border-radius:8px;padding:8px">🔐 دخول المدير</button>
+      <button id="qv-admin-login" type="button" style="display:block;margin:8px auto;background:#075b3b;color:white;border:0;border-radius:8px;padding:8px">🔐 دخول المدير عبر Google</button>
+      <div style="max-width:300px;margin:10px auto;padding:10px;border:1px solid #ddd;border-radius:10px">
+        <p style="margin:4px">أو الدخول بالبريد وكلمة المرور</p>
+        <input id="qv-admin-email" type="email" autocomplete="username" placeholder="البريد الإلكتروني" style="box-sizing:border-box;width:100%;padding:9px;margin:5px 0;border:1px solid #bbb;border-radius:6px">
+        <input id="qv-admin-password" type="password" autocomplete="current-password" placeholder="كلمة المرور" style="box-sizing:border-box;width:100%;padding:9px;margin:5px 0;border:1px solid #bbb;border-radius:6px">
+        <button id="qv-admin-email-login" type="button" style="width:100%;margin:5px 0;background:#075b3b;color:white;border:0;border-radius:8px;padding:9px">دخول بالبريد</button>
+      </div>
       <p id="qv-admin-status" style="font-size:12px"></p>
       <button id="qv-record" type="button">📹 تصوير فيديو</button>
       <button id="qv-stop" type="button" disabled>⏹ إيقاف ورفع</button>
@@ -131,6 +137,27 @@
         await auth.signInWithRedirect(provider);
       } catch (e) {
         adminStatus.textContent = "تعذر تسجيل الدخول: " + (e.code || e.message || "تحقق من إعدادات Firebase");
+      }
+    });
+    document.getElementById("qv-admin-email-login").addEventListener("click", async () => {
+      const email = document.getElementById("qv-admin-email").value.trim();
+      const password = document.getElementById("qv-admin-password").value;
+      if (!email || !password) {
+        adminStatus.textContent = "أدخل البريد الإلكتروني وكلمة المرور أولًا.";
+        return;
+      }
+      try {
+        adminStatus.textContent = "جارٍ تسجيل الدخول...";
+        await auth.signInWithEmailAndPassword(email, password);
+      } catch (e) {
+        const messages = {
+          "auth/operation-not-allowed": "يجب تفعيل Email/Password في Firebase Authentication.",
+          "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
+          "auth/user-not-found": "لم يتم العثور على المستخدم.",
+          "auth/wrong-password": "كلمة المرور غير صحيحة.",
+          "auth/too-many-requests": "محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة."
+        };
+        adminStatus.textContent = messages[e.code] || ("تعذر تسجيل الدخول: " + (e.code || e.message || "خطأ غير معروف"));
       }
     });
     auth.getRedirectResult().catch(e => {
