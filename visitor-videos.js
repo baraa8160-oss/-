@@ -5,6 +5,8 @@
   box.innerHTML = `
     <div style="padding:10px;text-align:center;color:#075b3b">
       <p>شارك فيديو لقجال (20 ثانية كحد أقصى)</p>
+      <button id="qv-admin-login" type="button" style="display:block;margin:8px auto;background:#075b3b;color:white;border:0;border-radius:8px;padding:8px">🔐 دخول المدير</button>
+      <p id="qv-admin-status" style="font-size:12px"></p>
       <button id="qv-record" type="button">📹 تصوير فيديو</button>
       <button id="qv-stop" type="button" disabled>⏹ إيقاف ورفع</button>
       <label style="display:block;margin:8px">
@@ -17,17 +19,34 @@
 
   const status = document.getElementById("qv-status");
   const feed = document.getElementById("qv-feed");
+  const adminStatus = document.getElementById("qv-admin-status");
+  const adminEmail = "baraa8160@gmail.com";
+  let isAdmin = false;
   const say = t => { status.textContent = t; };
   const cloudName = "wiq0fgyr";
   const preset = "qejal_visitor_videos";
   let recorder, stream, chunks = [], timer;
 
-  function addVideo(url) {
+  function addVideo(docId, url) {
     if (!url || !url.includes("res.cloudinary.com")) return;
+    const card = document.createElement("div");
+    card.style.cssText = "margin:12px auto;padding:8px;border:1px solid #ddd;border-radius:10px";
     const v = document.createElement("video");
     v.src = url; v.controls = true; v.playsInline = true; v.preload = "metadata";
-    v.style.cssText = "display:block;width:100%;max-height:280px;margin:10px auto;border-radius:10px;background:#000";
-    feed.prepend(v);
+    v.style.cssText = "display:block;width:100%;max-height:280px;border-radius:10px;background:#000";
+    card.appendChild(v);
+    if (isAdmin) {
+      const del = document.createElement("button");
+      del.type = "button"; del.textContent = "🗑️ حذف الفيديو";
+      del.style.cssText = "display:block;margin:8px auto;background:#b42318;color:white;border:0;border-radius:8px;padding:9px";
+      del.addEventListener("click", async () => {
+        if (!confirm("هل تريد حذف هذا الفيديو من الموقع؟ سيبقى الملف الأصلي في Cloudinary.")) return;
+        try { await firebase.firestore().collection("videos").doc(docId).delete(); }
+        catch (e) { alert("تعذر الحذف. تحقق من قواعد أمان Firebase."); }
+      });
+      card.appendChild(del);
+    }
+    feed.appendChild(card);
   }
 
   async function durationOf(file) {
@@ -104,12 +123,23 @@
   });
 
   if (window.firebase && firebase.apps && firebase.apps.length) {
-    const db = firebase.firestore();
-    db.collection("videos").orderBy("createdAt", "desc").limit(12).onSnapshot(snapshot => {
-      feed.innerHTML = "";
-      snapshot.forEach(doc => addVideo(doc.data().videoUrl));
-      if (!feed.children.length) say("لا توجد فيديوهات منشورة بعد. كن أول من يشارك!");
-    }, () => say("تعذر تحميل الفيديوهات. تحقق من إعدادات Firebase."));
+    const auth = firebase.auth();
+    document.getElementById("qv-admin-login").addEventListener("click", async () => {
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await auth.signInWithPopup(provider);
+      } catch (e) { adminStatus.textContent = "تعذر تسجيل الدخول. جرّب فتح الموقع في Chrome."; }
+    });
+    auth.onAuthStateChanged(user => {
+      isAdmin = !!(user && user.email && user.email.toLowerCase() === adminEmail);
+      adminStatus.textContent = isAdmin ? "تم تسجيل دخول المدير." : (user ? "هذا الحساب ليس حساب المدير." : "إدارة الفيديوهات متاحة للمدير فقط.");
+      const db = firebase.firestore();
+      db.collection("videos").orderBy("createdAt", "desc").limit(12).get().then(snapshot => {
+        feed.innerHTML = "";
+        snapshot.forEach(doc => addVideo(doc.id, doc.data().videoUrl));
+        if (!feed.children.length) say("لا توجد فيديوهات منشورة بعد. كن أول من يشارك!");
+      }).catch(() => say("تعذر تحميل الفيديوهات. تحقق من إعدادات Firebase."));
+    });
   } else {
     say("لم يتم تحميل Firebase بعد. يرجى تحديث إعداد الموقع.");
   }
