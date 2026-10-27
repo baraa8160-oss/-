@@ -5,6 +5,7 @@
   box.innerHTML = `
     <div style="padding:10px;text-align:center;color:#075b3b">
       <p>شارك فيديو لقجال (20 ثانية كحد أقصى)</p>
+      <div id="qv-admin-panel" style="display:none">
       <button id="qv-admin-login" type="button" style="display:block;margin:8px auto;background:#075b3b;color:white;border:0;border-radius:8px;padding:8px">🔐 دخول المدير عبر Google</button>
       <div style="max-width:300px;margin:10px auto;padding:10px;border:1px solid #ddd;border-radius:10px">
         <p style="margin:4px">أو الدخول بالبريد وكلمة المرور</p>
@@ -13,6 +14,7 @@
         <button id="qv-admin-email-login" type="button" style="width:100%;margin:5px 0;background:#075b3b;color:white;border:0;border-radius:8px;padding:9px">دخول بالبريد</button>
       </div>
       <p id="qv-admin-status" style="font-size:12px"></p>
+      </div>
       <button id="qv-record" type="button">📹 تصوير فيديو</button>
       <button id="qv-stop" type="button" disabled>⏹ إيقاف ورفع</button>
       <label style="display:block;margin:8px">
@@ -27,6 +29,15 @@
   const feed = document.getElementById("qv-feed");
   const adminStatus = document.getElementById("qv-admin-status");
   const adminEmail = "baraa8160@gmail.com";
+  const adminPanel = document.getElementById("qv-admin-panel");
+  const heading = box.querySelector("p");
+  let holdTimer;
+  heading.addEventListener("pointerdown", () => {
+    holdTimer = setTimeout(() => { adminPanel.style.display = "block"; }, 1800);
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(evt =>
+    heading.addEventListener(evt, () => clearTimeout(holdTimer))
+  );
   let isAdmin = false;
   const say = t => { status.textContent = t; };
   const cloudName = "wiq0fgyr";
@@ -165,6 +176,7 @@
     });
     auth.onAuthStateChanged(user => {
       isAdmin = !!(user && user.email && user.email.toLowerCase() === adminEmail);
+      if (isAdmin) adminPanel.style.display = "block";
       adminStatus.textContent = isAdmin ? "تم تسجيل دخول المدير." : (user ? "هذا الحساب ليس حساب المدير." : "إدارة الفيديوهات متاحة للمدير فقط.");
       const db = firebase.firestore();
       db.collection("videos").orderBy("createdAt", "desc").limit(12).onSnapshot(snapshot => {
