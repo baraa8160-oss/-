@@ -895,8 +895,8 @@ height: 105px;
     position: relative;
     z-index: 1;
 }
-/* وميض لطيف لعبارة خبر عاجل */
-.news-ticker-label {
+/* وميض الكلمات فقط دون الإطار الأحمر */
+.urgent-blink-text {
     animation: urgentBlink 1.2s ease-in-out infinite;
 }
 @keyframes urgentBlink {
@@ -1741,7 +1741,7 @@ header > * {
 </header>
 
 <div class="news-ticker" role="region" aria-label="شريط الأخبار والمستجدات">
-    <div class="news-ticker-label">خبر عاجل</div>
+    <div class="news-ticker-label"><span class="urgent-blink-text">خبر عاجل</span></div>
     <div class="news-ticker-track">
         <span class="news-ticker-text"><span>قبول ترشيح القائمة لانتخابات أعضاء المجلس الشعبي البلدي عن الدائرة الانتخابية قجال</span><span style="display:inline-block; margin-right:180px;">يبدأ النشر في الموقع إبتداءا من يوم : 06/11/2026</span></span>
     </div>
