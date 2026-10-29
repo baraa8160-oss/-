@@ -913,13 +913,14 @@ height: 105px;
 .news-ticker-text {
     display: inline-block;
     padding: 0 12px;
-    animation: qejalTicker 18s linear infinite;
+    animation: qejalTicker 16s linear infinite;
+    will-change: transform;
 }
 .news-ticker:hover .news-ticker-text {
     animation-play-state: paused;
 }
 @keyframes qejalTicker {
-    from { transform: translateX(-100%); }
+    from { transform: translateX(0); }
     to { transform: translateX(100%); }
 }
 @media (prefers-reduced-motion: reduce) {
